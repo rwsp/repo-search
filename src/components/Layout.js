@@ -3,8 +3,9 @@ import styled from 'styled-components/macro';
 import Search from "./Search";
 import Results from "./Results";
 import Filters from "./Filters";
+import axios from 'axios';
 
-const toGradient = colors => `to bottom right, ${colors.blue}, ${colors.grey}, ${colors.light}, ${colors.blue}`;
+const toGradient = colors => `to bottom right, ${colors.blue}, ${colors.light}, ${colors.blue}, ${colors.light}`;
 
 const Background = styled.div`
   height: 100vh;
@@ -45,11 +46,7 @@ const Layout = () => (
     <Background/>
     <Contents>
       <Panel>
-        <SearchColumn>
-          <Search />
-          <Results />
-        </SearchColumn>
-        <Filters />
+        <Search />
       </Panel>
     </Contents>
   </div>
