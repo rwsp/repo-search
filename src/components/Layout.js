@@ -4,6 +4,7 @@ import Search from "./Search";
 import Results from "./Results";
 import Filters from "./Filters";
 import axios from 'axios';
+import Sort from "./Sort";
 
 const toGradient = colors => `to bottom right, ${colors.blue}, ${colors.light}, ${colors.blue}, ${colors.light}`;
 
@@ -28,12 +29,11 @@ const Contents = styled.div`
 `;
 
 const Panel = styled.div`
-  height: 500px;
-  width: 500px;
   background-color: ${props => props.theme.colors.light};
   border-radius: 30px;
   box-shadow: 0 0 10px 2px ${props => props.theme.colors.shadow};
   display: flex;
+  flex-direction: column;
 `;
 
 const SearchColumn = styled.div`
@@ -47,6 +47,9 @@ const Layout = () => (
     <Contents>
       <Panel>
         <Search />
+        <Sort />
+        <Filters />
+        <Results />
       </Panel>
     </Contents>
   </div>

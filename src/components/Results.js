@@ -1,6 +1,20 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import {connect} from "react-redux";
 
-const Results = () => <div>results compoennt</div>;
+const Root = styled.div`
+  border: 1px solid blue;
+`;
 
-export default Results;
+const Results = props =>
+<Root>
+  {!props.items.length && <div>no results</div>}
+  {props.items.map(i => <div>{i.name} | {i.stargazers_count}</div>)}
+</Root>
+;
+
+const mapStateToProps = state => ({
+  items: (state.data && state.data.items) || [],
+});
+
+export default connect(mapStateToProps)(Results);

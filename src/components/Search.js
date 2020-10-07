@@ -15,6 +15,10 @@ const Submit = styled.button`
   background-color: greenyellow;
 `;
 
+const Root = styled.div`
+  border: 1px solid red;
+`;
+
 const onChange = setSearchValue => e => setSearchValue(e.target.value);
 
 const onSubmit = (submit, value) => e => {
@@ -31,10 +35,10 @@ const Search = props => {
   const [searchValue, setSearchValue] = useState('');
 
   return (
-    <>
+    <Root>
       <Input value={searchValue} onChange={onChange(setSearchValue)} />
-      <Submit onClick={onSubmit(props.submitSearch, searchValue)}>click me</Submit>
-    </>
+      <Submit onClick={onSubmit(props.submitSearch, searchValue)}>click me!!!</Submit>
+    </Root>
   )
 };
 
