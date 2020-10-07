@@ -8,10 +8,16 @@ const SEARCH_FAILURE = 'SEARCH_FAILURE';
 const SET_FILTER = 'SET_FILTER';
 const SET_SORT = 'SET_SORT';
 
+const initialResults = {
+  numberOfPages: null,
+  currentPage: null,
+  items: null,
+};
+
 const defaultState = {
   loading: false,
   error: false,
-  data: null,
+  results: initialResults,
   filter: '',
   sort: sorts.BEST_MATCH,
 };
@@ -25,12 +31,18 @@ export const submitSearch = value => async (dispatch, getState) => {
 
   const { filter, sort } = getState();
 
+  const normalize = _result => ({
+    numberOfPages: -1,
+    currentPage: -2,
+    items: _result.data.items,
+  });
+
   const searchResult =
     await apiSearch(handleSpaces(value), handleSpaces(filter), sort);
 
   dispatch({
       type: searchResult.success ? SEARCH_SUCCESS : SEARCH_FAILURE,
-      data: searchResult.data,
+      data: normalize(searchResult),
   });
 };
 
@@ -40,22 +52,22 @@ export const defaultReducer = (state = defaultState, action) => {
       return {
         ...state,
         loading: true,
-        data: null,
         error: false,
+        results: initialResults,
       };
     case SEARCH_SUCCESS:
       return {
         ...state,
         loading: false,
-        data: action.data,
         error: false,
+        results: action.data,
       };
     case SEARCH_FAILURE:
       return {
         ...state,
         loading: false,
-        data: null,
         error: true,
+        results: initialResults,
       };
     case SET_FILTER:
       return {

@@ -18,7 +18,7 @@ const toEndpoint = (value, filter, sort) =>{
 
   return endpoint;
 
-}
+};
 
 const apiSearch = async (value, filter, sort) => {
   return axios.get(toEndpoint(value, filter, sort))
