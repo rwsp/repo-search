@@ -43,8 +43,6 @@ const Search = props => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getData: () => dispatch({type: 'GET_DATA', data: null}),
-  deleteData: () => dispatch({type: 'DELETE_DATA', data: null}),
   submitSearch: value => dispatch(submitSearch(value)),
 });
 

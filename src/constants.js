@@ -1,3 +1,5 @@
+export const RESULTS_PER_PAGE = 12;
+
 //values for result sorting
 export const sorts = {
   BEST_MATCH: {

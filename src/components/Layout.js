@@ -3,8 +3,8 @@ import styled from 'styled-components/macro';
 import Search from "./Search";
 import Results from "./Results";
 import Filters from "./Filters";
-import axios from 'axios';
 import Sort from "./Sort";
+import Pagination from "./Pagination";
 
 const toGradient = colors => `to bottom right, ${colors.blue}, ${colors.light}, ${colors.blue}, ${colors.light}`;
 
@@ -43,13 +43,14 @@ const SearchColumn = styled.div`
 
 const Layout = () => (
   <div>
-    <Background/>
+    <Background />
     <Contents>
       <Panel>
         <Search />
         <Sort />
         <Filters />
         <Results />
+        <Pagination />
       </Panel>
     </Contents>
   </div>

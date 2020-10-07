@@ -14,7 +14,7 @@ const Results = props =>
 ;
 
 const mapStateToProps = state => ({
-  items: (state.data && state.data.items) || [],
+  items: state.results.items,
 });
 
 export default connect(mapStateToProps)(Results);
