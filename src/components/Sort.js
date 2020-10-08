@@ -7,7 +7,7 @@ import {Label} from "../theme";
 
 const Root = styled.div`
   width: 100%;
-  height: 100px;
+  height: 60px;
   display: flex; 
   justify-content: space-between;
   align-items: center;
