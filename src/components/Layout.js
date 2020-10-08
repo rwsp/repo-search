@@ -9,16 +9,16 @@ import {connect} from "react-redux";
 // background-image: linear-gradient(${props => toGradient(props.theme.colors)});
 
 const Background = styled.div`
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   position: absolute;
   z-index: -1;
   opacity: .3;
 `;
 
 const Contents = styled.div`
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   position: absolute;
   opacity: 1;
   z-index: 0;

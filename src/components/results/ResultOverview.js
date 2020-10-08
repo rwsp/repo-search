@@ -84,8 +84,6 @@ const ResultOverview = props =>
           : props.item.description
       }
     </Description>
-
-
   </Root>;
 
 export default ResultOverview;

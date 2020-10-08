@@ -11,6 +11,7 @@ const Root = styled(Box)`
   display: flex;
   flex-direction: column;
   align-items: ${props => props.resultsFound ? 'flex-start' : 'center'};
+  width: 100%;
 `;
 
 const NoResults = styled.span`
