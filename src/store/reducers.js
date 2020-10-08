@@ -7,6 +7,7 @@ const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 const SEARCH_FAILURE = 'SEARCH_FAILURE';
 const SET_FILTER = 'SET_FILTER';
 const SET_SORT = 'SET_SORT';
+const TOGGLE_CONTROLS = 'TOGGLE_CONTROLS';
 
 const initialResults = {
   numberOfPages: null,
@@ -21,6 +22,14 @@ const defaultState = {
   filter: '',
   sort: sorts.BEST_MATCH,
   lastSearchValue: '',
+  areControlsOpen: false,
+};
+
+export const toggleControls = () => (dispatch, getState) => {
+  console.log('are controls open');
+  console.log(getState().areControlsOpen);
+
+  dispatch({type: TOGGLE_CONTROLS, data: !getState().areControlsOpen})
 };
 
 export const setFilter = filter => dispatch => dispatch({type: SET_FILTER, data: filter});
@@ -83,6 +92,11 @@ export const defaultReducer = (state = defaultState, action) => {
       return {
         ...state,
         sort: action.data,
+      };
+    case TOGGLE_CONTROLS:
+      return {
+        ...state,
+        areControlsOpen: action.data,
       };
     default:
       return state;

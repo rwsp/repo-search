@@ -3,28 +3,55 @@ import styled from 'styled-components/macro';
 import {sorts} from "../constants";
 import {connect} from "react-redux";
 import {setSort} from "../store/reducers";
+import {Label} from "../theme";
+
+const Root = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+`;
+
+const Toggle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: ${props => props.theme.fonts.text};
+  font-weight: normal;
+  font-size: 12px;
+  height: 40px;
+  width: 65px;
+  margin-left: 10px;
+  border-radius: ${props => props.theme.borderRadius};
+  color: ${props => props.selected ? props.theme.colors.white : props.theme.colors.dark};
+  cursor: pointer;
+  ${props => props.selected && `background-color: ${props.theme.colors.dark};`}
+`;
+
+const toToggle = (selectedSort, sort, setSort) =>
+  <Toggle
+    selected={selectedSort.value === sort.value}
+    onClick={() => setSort(sort)}
+  >
+    {sort.value}
+  </Toggle>;
 
 
 const Sort = props => {
   const { selectedSort, setSort } = props;
 
-  const toRadio = sort =>
-    <div>
-      <input
-        onClick={() => setSort(sort)}
-        type='radio'
-        id={sort.value}
-        name='sort'
-        value={sort.value}
-        checked={selectedSort.value === sort.value}
-      />
-      <label htmlFor={sort.value}>{sort.label}</label>
-    </div>;
-
   return (
-    <>
-      {Object.keys(sorts).map(key => toRadio(sorts[key]))}
-    </>
+    <Root>
+      <Label>Sort</Label>
+      <Buttons>
+        {Object.keys(sorts).map(key => toToggle(selectedSort, sorts[key], setSort))}
+      </Buttons>
+    </Root>
   );
 };
 

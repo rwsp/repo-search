@@ -3,13 +3,11 @@ export const RESULTS_PER_PAGE = 12;
 //values for result sorting
 export const sorts = {
   BEST_MATCH: {
-    value: 'BEST_MATCH',
-    label: 'Best Match',
-    urlParam: 'default',
+    value: 'Match',
+    urlParam: '',
   },
   STARS: {
-    value: 'STARS',
-    label: 'Stars',
+    value: 'Stars',
     urlParam: 'stars',
   }
 };

@@ -3,27 +3,39 @@ import styled from 'styled-components/macro';
 import {filterLanguages} from "../constants";
 import {connect} from "react-redux";
 import {setFilter} from "../store/reducers";
+import {Label} from "../theme";
 
 const Root = styled.div`
-  border: 1px solid green;
+  width: 100%;
+  height: 100px;
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Select = styled.select`
+  font-family: ${props => props.theme.fonts.text};
+  font-size: 12px;
+  height: 40px;
+  width: 140px;
+  border-radius: ${props => props.theme.borderRadius};
+  border: 2px solid ${props => props.theme.colors.dark};
+  padding: 0 8px;
 `;
 
 const onChange = setFilter => e => setFilter(e.target.value);
 
-const onClear = setFilter => () => setFilter('');
-
 const Filters = props =>
   <Root>
-    <input list={'languages'} onChange={onChange(props.setFilter)} value={props.filter} />
-    <datalist id={'languages'} >
-      <option value={''}>none</option>
+    <Label>Language</Label>
+    <Select onChange={onChange(props.setFilter)}>
+      <option value={''}>All</option>
       {
         filterLanguages
           .sort()
           .map(language => <option>{language}</option>)
       }
-    </datalist>
-    <button onClick={onClear(props.setFilter)}>clear</button>
+    </Select>
   </Root>
 ;
 

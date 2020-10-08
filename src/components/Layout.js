@@ -5,15 +5,17 @@ import Results from "./Results";
 import Filters from "./Filters";
 import Sort from "./Sort";
 import Pagination from "./Pagination";
+import SearchControls from "./SearchControls";
+import {connect} from "react-redux";
 
-const toGradient = colors => `to bottom right, ${colors.blue}, ${colors.light}, ${colors.blue}, ${colors.light}`;
+// const toGradient = colors => `to bottom right, ${colors.blue}, ${colors.light}, ${colors.blue}, ${colors.light}`;
+// background-image: linear-gradient(${props => toGradient(props.theme.colors)});
 
 const Background = styled.div`
   height: 100vh;
   width: 100vw;
   position: absolute;
   z-index: -1;
-  background-image: linear-gradient(${props => toGradient(props.theme.colors)});
   opacity: .3;
 `;
 
@@ -30,30 +32,51 @@ const Contents = styled.div`
 
 const Panel = styled.div`
   background-color: ${props => props.theme.colors.light};
-  border-radius: 30px;
-  box-shadow: 0 0 10px 2px ${props => props.theme.colors.shadow};
   display: flex;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 40px 24px;
+  
+  > * {
+    margin-bottom: 40px;
+  }
 `;
 
-const SearchColumn = styled.div`
-  display: flex;
-  flex-direction: column;
+const Cta = styled.span`
+  font-size: 26px;
+  letter-spacing: -1px;
+  font-weight: bold;
+  font-family: ${props => props.theme.fonts.heading};
 `;
 
-const Layout = () => (
+const Layout = props => (
   <div>
+
+    {console.log(props.state)}
+
+
+
+
+
     <Background />
     <Contents>
       <Panel>
+        <Cta>Find Some Repos</Cta>
         <Search />
-        <Sort />
-        <Filters />
-        <Results />
-        <Pagination />
+        {props.areControlsOpen && <SearchControls />}
+        {/*<Sort />*/}
+        {/*<Filters />*/}
+        {/*<Results />*/}
+        {/*<Pagination />*/}
       </Panel>
     </Contents>
   </div>
 );
 
-export default Layout;
+const mapStateToProps = state => ({
+  areControlsOpen: state.areControlsOpen,
+  state,
+});
+
+export default connect(mapStateToProps)(Layout);
