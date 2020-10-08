@@ -31,6 +31,7 @@ export const theme = {
   borderRadius: '6px',
   boxShadow: `0 0 10px 2px ${colors.grey}`,
   boxBorder: `1px solid ${colors.grey}`,
+  breakpoint: '600px',
 };
 
 export const Box = styled.div`

@@ -4,9 +4,9 @@ import Search from "./Search";
 import Results from "./results/Results";
 import SearchControls from "./SearchControls";
 import {connect} from "react-redux";
+import {Box} from "../theme";
 
-// const toGradient = colors => `to bottom right, ${colors.blue}, ${colors.light}, ${colors.blue}, ${colors.light}`;
-// background-image: linear-gradient(${props => toGradient(props.theme.colors)});
+const toGradient = colors => `to bottom right, ${colors.main1}, ${colors.main2}, ${colors.grey}, ${colors.accent1}`;
 
 const Background = styled.div`
   height: 100%;
@@ -14,6 +14,7 @@ const Background = styled.div`
   position: absolute;
   z-index: -1;
   opacity: .3;
+  background-image: linear-gradient(${props => toGradient(props.theme.colors)});
 `;
 
 const Contents = styled.div`
@@ -25,15 +26,20 @@ const Contents = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  @media (min-width: ${props => props.theme.breakpoint}) {
+    padding: 30px 0;
+  }
 `;
 
-const Panel = styled.div`
+const Panel = styled(Box)`
   background-color: ${props => props.theme.colors.light};
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
   padding: 40px 24px;
+  max-width: ${props => props.theme.breakpoint};
   
   > * {
     margin-bottom: 40px;
