@@ -1,5 +1,5 @@
 import apiSearch from "../api";
-import {handleSpaces} from "../module";
+import {handleSpaces} from "../api";
 import {RESULTS_PER_PAGE, sorts} from "../constants";
 
 const SEARCH_SUBMITTED = 'SEARCH_SUBMITTED';
@@ -16,7 +16,8 @@ const initialResults = {
 };
 
 const defaultState = {
-  loading: false,
+  submitted: false,
+  success: false,
   error: false,
   results: initialResults,
   filter: '',
@@ -48,7 +49,7 @@ export const submitSearch = (value, page = 1) => async (dispatch, getState) => {
   });
 
   const searchResult =
-    await apiSearch(handleSpaces(value), handleSpaces(filter), sort, page);
+    await apiSearch(value, filter, sort, page);
 
   console.log('search result');
   console.log(searchResult);
@@ -64,22 +65,23 @@ export const defaultReducer = (state = defaultState, action) => {
     case SEARCH_SUBMITTED:
       return {
         ...state,
-        loading: true,
+        submitted: true,
         error: false,
+        success: false,
         results: initialResults,
         lastSearchValue: action.data,
       };
     case SEARCH_SUCCESS:
       return {
         ...state,
-        loading: false,
         error: false,
+        success: true,
         results: action.data,
       };
     case SEARCH_FAILURE:
       return {
         ...state,
-        loading: false,
+        success: false,
         error: true,
         results: initialResults,
       };

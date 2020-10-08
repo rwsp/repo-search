@@ -1,0 +1,1 @@
+export const isLoading = state => state.submitted && !state.error && !state.success;

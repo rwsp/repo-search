@@ -7,6 +7,7 @@ const colors = {
   nickel: '#626c66',
   green: '#434a42',
   grey: '#e5e5e5',
+  red: '#8c2720',
 };
 
 export const theme = {
@@ -25,6 +26,7 @@ export const theme = {
     grey: colors.grey,
     light: '#f8f8ff',
     dark: '#0e1111',
+    error: colors.red,
   },
   borderRadius: '6px',
   boxShadow: `0 0 10px 2px ${colors.grey}`,

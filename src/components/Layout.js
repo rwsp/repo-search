@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import Search from "./Search";
-import Results from "./Results";
-import Filters from "./Filters";
-import Sort from "./Sort";
-import Pagination from "./Pagination";
+import Results from "./results/Results";
 import SearchControls from "./SearchControls";
 import {connect} from "react-redux";
 
@@ -52,22 +49,13 @@ const Cta = styled.span`
 
 const Layout = props => (
   <div>
-
-    {console.log(props.state)}
-
-
-
-
-
     <Background />
     <Contents>
       <Panel>
         <Cta>Find Some Repos</Cta>
         <Search />
         {props.areControlsOpen && <SearchControls />}
-        {/*<Sort />*/}
-        {/*<Filters />*/}
-        {/*<Results />*/}
+        <Results />
         {/*<Pagination />*/}
       </Panel>
     </Contents>
@@ -76,7 +64,6 @@ const Layout = props => (
 
 const mapStateToProps = state => ({
   areControlsOpen: state.areControlsOpen,
-  state,
 });
 
 export default connect(mapStateToProps)(Layout);

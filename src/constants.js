@@ -54,7 +54,6 @@ export const filterLanguages = [
   'ABAP',
   'MATLAB',
   'SystemVerilog',
-  'Visual Basic .NET',
   'WebAssembly',
   'F#',
   'Objective-C++',

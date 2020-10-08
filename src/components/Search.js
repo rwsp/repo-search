@@ -74,7 +74,10 @@ const onChange = setSearchValue => e => setSearchValue(e.target.value);
 
 const onSubmit = (submit, value) => e => {
   e.preventDefault();
-  submit(value);
+
+  if(value.length) {
+    submit(value);
+  }
 };
 
 const Search = props => {

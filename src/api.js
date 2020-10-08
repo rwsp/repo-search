@@ -1,7 +1,15 @@
 import axios from 'axios';
 import {RESULTS_PER_PAGE} from "./constants";
 
-const toEndpoint = (value, filter, sort, page) =>{
+//this will replace any whitespace with a single '+' to facilitate URL params
+const cleanse = str => str
+  .replace(/\s+/g,'%20')
+  .replace(/#+/g,'%23')
+  .replace(/\+/g,'%2B');
+
+const toEndpoint = (_value, _filter, sort, page) =>{
+  const value = cleanse(_value);
+  const filter = cleanse(_filter);
 
   const domain = 'https://api.github.com/search/repositories';
 
