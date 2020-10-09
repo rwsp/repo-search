@@ -79,8 +79,8 @@ const ResultOverview = props =>
     </Row>
     <Description>
       {
-        props.item.description && props.item.description.length > 100
-          ? props.item.description.slice(0, 99) + '...'
+        props.item.description && props.item.description.length > 250
+          ? props.item.description.slice(0, 249) + '...'
           : props.item.description
       }
     </Description>

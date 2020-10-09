@@ -5,6 +5,7 @@ import Results from "./results/Results";
 import SearchControls from "./SearchControls";
 import {connect} from "react-redux";
 import {Box} from "../theme";
+import Pagination from "./Pagination";
 
 const Root = styled.div`
   min-height: 100vh;
@@ -51,14 +52,16 @@ const Layout = props => (
       <Cta>Find Some Repos</Cta>
       <Search />
       {props.areControlsOpen && <SearchControls />}
+      {props.showPagination && <Pagination />}
       <Results />
-      {/*<Pagination />*/}
+      {props.showPagination && <Pagination />}
     </Panel>
   </Root>
 );
 
 const mapStateToProps = state => ({
   areControlsOpen: state.areControlsOpen,
+  showPagination: state.success && state.results.numberOfPages > 1,
 });
 
 export default connect(mapStateToProps)(Layout);

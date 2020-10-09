@@ -2,30 +2,81 @@ import React, {useState} from 'react';
 import styled from 'styled-components/macro';
 import {connect} from "react-redux";
 import {submitSearch} from "../store/reducers";
+import LeftIcon from "../left-arrow-angle.svg";
+import RightIcon from "../right-arrow-angle.svg";
+import DoubleArrowIcon from "../double-left-angle-arrows.svg";
+import {css} from "styled-components";
+
+const styling = css`
+  margin: 0 5px;
+  height: 40px;
+  width: 40px;
+  border-radius: ${props => props.theme.borderRadius};
+  box-shadow: ${props => props.theme.boxShadow};
+  border: none;
+  outline: none;
+  background-color: ${props => props.theme.colors.dark};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Root = styled.div`
-  background-color: lightpink;
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Button = styled.button`
-  border: 2px solid red;
+  ${styling};
+  opacity: ${props => props.enabled ? 1 : .4};
+  cursor: ${props => props.enabled ? 'pointer' : 'default'};
+
+`;
+
+const Icon = styled.img`
+    filter: invert(1);
+    ${props => props.flip && 'transform: rotate(180deg);'};
+`;
+
+const CurrentPage = styled.span`
+  ${styling};
+  width: auto;
+  padding: 0 10px;  
+  font-family: ${props => props.theme.fonts.heading};
+  letter-spacing: -1px;
+  font-weight: bold;
+  color: ${props => props.theme.colors.light};
 `;
 
 const Pagination = props => {
   const { currentPage, numberOfPages, searchValue, submitSearch } = props;
 
-  const renderButton = (increment, label) =>
-    <Button onClick={() => submitSearch(searchValue, currentPage + increment)}>{label}</Button>;
+  const renderButton = (toPage, src, enabled, flip) =>
+    <Button
+      enabled={enabled}
+      onClick={() => enabled && submitSearch(searchValue, toPage)}
+    >
+      <Icon
+        flip={flip}
+        src={src}
+        height={15}
+      />
+    </Button>
+  ;
 
-  const renderForwardButton = () => renderButton(1, '>>');
-  const renderBackButton = () => renderButton(-1, '<<');
+  const renderForwardButton = enabled => renderButton(currentPage + 1, RightIcon, enabled);
+  const renderBackButton = enabled => renderButton(currentPage - 1, LeftIcon, enabled);
+  const renderStartButton = enabled => renderButton(1, DoubleArrowIcon, enabled);
+  const renderEndButton = enabled => renderButton(numberOfPages, DoubleArrowIcon, enabled, true);
 
   return numberOfPages < 2 ? null : (
     <Root>
-      {currentPage > 1 && renderBackButton()}
-      <span>current page: {currentPage}</span>
-      {currentPage < numberOfPages && renderForwardButton()}
+      {renderStartButton(currentPage !== 1)}
+      {renderBackButton(currentPage !== 1)}
+      <CurrentPage>{currentPage} / {numberOfPages > 999 ? '999+' : numberOfPages}</CurrentPage>
+      {renderForwardButton(currentPage < numberOfPages)}
+      {renderEndButton(currentPage < numberOfPages)}
     </Root>
   );
 };
