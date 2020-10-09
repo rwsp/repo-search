@@ -24,13 +24,12 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transform: rotate(${props => props.isOpen ? '180deg' : '0'});
-  transition: all 200ms;
 `;
 
 const Icon = styled.img`
-  transform: rotate(270deg) scale(.5);
   filter: invert(1);
+  transform: rotate(${props => props.isOpen ? '90deg' : '270deg'}) scale(.5);
+  transition: all 200ms;
 `;
 
 const Details = styled.div`
@@ -38,17 +37,30 @@ const Details = styled.div`
   width: 100%;
 `;
 
+const renderDetails = item =>
+  <Details>
+    <div>Archived: {!item.archived ? 'no' : 'yes'}</div>
+    <div>Created: {item.created_at}</div>
+    <div>Pushed: ${item.pushed_at}</div>
+    <div>Forks: {item.forks}</div>
+    <div>Full Name: {item.full_name}</div>
+    <a href={item.html_url}>GitHub</a>
+    <div>id: {item.id}</div>
+    <a href={item.url}>Full Details</a>
+  </Details>
+;
+
 const ResultExtraDetails = props => {
   const [isOpen, setIsOpen] = useState(false);
 
   return(
     <Root>
-      <Button onClick={() => setIsOpen(!isOpen)} isOpen={isOpen}>
-        <Icon src={ArrowIcon} />
-      </Button>
       {
-        isOpen && <Details>?</Details>
+        isOpen && renderDetails(props.item)
       }
+      <Button onClick={() => setIsOpen(!isOpen)} >
+        <Icon src={ArrowIcon} isOpen={isOpen} />
+      </Button>
     </Root>
   );
 };

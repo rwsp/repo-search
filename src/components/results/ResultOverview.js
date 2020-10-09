@@ -85,7 +85,7 @@ const ResultOverview = props =>
           : props.item.description
       }
     </Description>
-    <ResultExtraControls />
+    <ResultExtraControls item={props.item}/>
   </Root>;
 
 export default ResultOverview;
