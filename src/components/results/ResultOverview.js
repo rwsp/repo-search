@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/macro';
 import StarIcon from "../../star.svg";
+import ResultExtraControls from "./ResultExtraDetails";
 
 const Root = styled.div`
   border-radius: ${props => props.theme.borderRadius};
   border: 2px solid ${props => props.theme.colors.dark};
   color: ${props => props.theme.colors.dark};
   width: 100%;
-  padding: 16px;
+  padding: 16px 16px 0 16px;
   margin-bottom: 10px;
   
   > * {
@@ -84,6 +85,7 @@ const ResultOverview = props =>
           : props.item.description
       }
     </Description>
+    <ResultExtraControls />
   </Root>;
 
 export default ResultOverview;
