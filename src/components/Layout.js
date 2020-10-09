@@ -6,26 +6,12 @@ import SearchControls from "./SearchControls";
 import {connect} from "react-redux";
 import {Box} from "../theme";
 
-const toGradient = colors => `to bottom right, ${colors.main1}, ${colors.main2}, ${colors.grey}, ${colors.accent1}`;
-
-const Background = styled.div`
-  height: 100%;
+const Root = styled.div`
+  min-height: 100vh;
+  height: auto;
   width: 100%;
-  position: absolute;
-  z-index: -1;
-  opacity: .3;
-  background-image: linear-gradient(${props => toGradient(props.theme.colors)});
-`;
-
-const Contents = styled.div`
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  opacity: 1;
-  z-index: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: ${props => props.theme.colors.main1};
+  
   
   @media (min-width: ${props => props.theme.breakpoint}) {
     padding: 30px 0;
@@ -33,16 +19,22 @@ const Contents = styled.div`
 `;
 
 const Panel = styled(Box)`
+  box-shadow: 0 0 10px 2px ${props => props.theme.colors.main2};
   background-color: ${props => props.theme.colors.light};
   display: flex;
   flex-direction: column;
-  height: 100%;
   width: 100%;
   padding: 40px 24px;
   max-width: ${props => props.theme.breakpoint};
+  margin: 0 auto;
   
   > * {
     margin-bottom: 40px;
+  }
+  
+  @media (max-width: ${props => props.theme.breakpoint}) {
+    height: auto;
+    min-height: 100vh;
   }
 `;
 
@@ -54,18 +46,15 @@ const Cta = styled.span`
 `;
 
 const Layout = props => (
-  <div>
-    <Background />
-    <Contents>
-      <Panel>
-        <Cta>Find Some Repos</Cta>
-        <Search />
-        {props.areControlsOpen && <SearchControls />}
-        <Results />
-        {/*<Pagination />*/}
-      </Panel>
-    </Contents>
-  </div>
+  <Root>
+    <Panel success={props.success}>
+      <Cta>Find Some Repos</Cta>
+      <Search />
+      {props.areControlsOpen && <SearchControls />}
+      <Results />
+      {/*<Pagination />*/}
+    </Panel>
+  </Root>
 );
 
 const mapStateToProps = state => ({
