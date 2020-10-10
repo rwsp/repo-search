@@ -6,6 +6,9 @@ import {Provider} from "react-redux";
 import {applyMiddleware, createStore} from 'redux';
 import {defaultReducer} from "./store/reducers";
 import thunk from 'redux-thunk';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 const store = createStore(defaultReducer, applyMiddleware(thunk));
 

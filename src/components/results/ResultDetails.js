@@ -1,6 +1,9 @@
 import StarIcon from "../../star.svg";
 import React from "react";
 import styled from 'styled-components/macro';
+import DotsIcon from "../../three-dots.svg";
+import CloseIcon from "../../close.svg";
+import {Box, RotateAndScale} from "../../theme";
 
 const Name = styled.div`
   text-overflow: fade;
@@ -23,6 +26,7 @@ const Description = styled.div`
 const Row = styled.div`
   display: flex;
   align-items: center;
+  ${props => props.space && 'justify-content: space-between;'}
 `;
 
 const OwnerName = styled.span`
@@ -52,9 +56,42 @@ const Language = styled.div`
   color: ${props => props.theme.colors.dark};
 `;
 
+const Button = styled(Box)`
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+   background-color: ${props => props.theme.colors.dark};
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
+const Root = styled.div`
+  > * {
+  margin-bottom: 14px;
+  }
+`;
+
+const Icon = styled.img`
+  filter: invert(1);
+  
+  ${RotateAndScale};
+`;
+
 const ResultDetails = props =>
-<>
-  <Name>{props.item.name.toUpperCase()}</Name>
+<Root>
+  <Row space>
+    <Name>{props.item.name.toUpperCase()}</Name>
+
+    <Button onClick={props.toggleModal}>
+      <Icon src={props.useCloseIcon ? CloseIcon : DotsIcon} alt={'dots-icon'} height={15} />
+    </Button>
+
+  </Row>
   <Language>{props.item.language}</Language>
 
   <Row>
@@ -74,6 +111,6 @@ const ResultDetails = props =>
         : props.item.description
     }
   </Description>
-</>;
+</Root>;
 
 export default ResultDetails;

@@ -1,10 +1,8 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/macro';
-import StarIcon from "../../star.svg";
 import ResultExtraDetails from "./ResultExtraDetails";
 import {motion} from 'framer-motion';
 import Modal from "react-modal";
-import {theme} from "../../theme";
 import ResultDetails from "./ResultDetails";
 
 
@@ -15,13 +13,7 @@ const Root = styled(motion.div)`
   width: 100%;
   padding: 16px 16px 0 16px;
   margin-bottom: 10px;
-  
-  > * {
-    margin-bottom: 8px;
-  }
 `;
-
-
 
 const modalStyle = {
   overlay: {
@@ -43,11 +35,11 @@ const modalStyle = {
 
 const ResultOverview = props => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   return (
-    <Root initial={{opacity: 0}} animate={{opacity: 1}}>
-      <ResultDetails item={props.item} />
-      <button onClick={() => setIsModalOpen(!isModalOpen)}>click</button>
+    <Root initial={{opacity: 0}} animate={{opacity: 1}} key={`${props.item.id}`}>
+      <ResultDetails item={props.item} toggleModal={toggleModal}/>
 
       <Modal
         isOpen={isModalOpen}
@@ -55,8 +47,8 @@ const ResultOverview = props => {
         contentLabel="Repo Extra Details Modal"
         style={modalStyle}
       >
-        <ResultDetails item={props.item} />
-        <ResultExtraDetails item={props.item}/>
+        <ResultDetails item={props.item} toggleModal={toggleModal} useCloseIcon={true} />
+        <ResultExtraDetails item={props.item} />
       </Modal>
   </Root>
   );

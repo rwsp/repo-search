@@ -38,6 +38,7 @@ const toToggle = (selectedSort, sort, setSort) =>
   <Toggle
     selected={selectedSort.value === sort.value}
     onClick={() => setSort(sort)}
+    key={sort.value}
   >
     {sort.value}
   </Toggle>;

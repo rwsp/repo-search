@@ -18,15 +18,8 @@ const toEndpoint = (_value, _filter, sort, page) =>{
   const pageParam = `&page=${page}&per_page=${RESULTS_PER_PAGE}`;
 
   const query = `?q=${value + filterParam}` + sortParam + pageParam;
-  const endpoint = domain + query;
 
-
-
-
-  console.log(endpoint);
-
-
-  return endpoint;
+  return domain + query;
 
 };
 

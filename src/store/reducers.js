@@ -1,5 +1,4 @@
 import apiSearch from "../api";
-import {handleSpaces} from "../api";
 import {RESULTS_PER_PAGE, sorts} from "../constants";
 
 const SEARCH_SUBMITTED = 'SEARCH_SUBMITTED';
@@ -26,12 +25,9 @@ const defaultState = {
   areControlsOpen: false,
 };
 
-export const toggleControls = () => (dispatch, getState) => {
-  console.log('are controls open');
-  console.log(getState().areControlsOpen);
+export const toggleControls = () =>
+  (dispatch, getState) => dispatch({type: TOGGLE_CONTROLS, data: !getState().areControlsOpen});
 
-  dispatch({type: TOGGLE_CONTROLS, data: !getState().areControlsOpen})
-};
 
 export const setFilter = filter => dispatch => dispatch({type: SET_FILTER, data: filter});
 
@@ -50,9 +46,6 @@ export const submitSearch = (value, page = 1) => async (dispatch, getState) => {
 
   const searchResult =
     await apiSearch(value, filter, sort, page);
-
-  console.log('search result');
-  console.log(searchResult);
 
   dispatch({
       type: searchResult.success ? SEARCH_SUCCESS : SEARCH_FAILURE,

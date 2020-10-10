@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 import {connect} from "react-redux";
 import {submitSearch} from "../store/reducers";
@@ -48,6 +48,11 @@ const CurrentPage = styled.span`
   letter-spacing: -1px;
   font-weight: bold;
   color: ${props => props.theme.colors.light};
+  font-size: 12px;
+  
+  @media (min-width: ${props => props.theme.breakpoint}) {
+    font-size: 16px;
+  }
 `;
 
 const Pagination = props => {
@@ -72,7 +77,7 @@ const Pagination = props => {
   const renderEndButton = enabled => renderButton(numberOfPages, DoubleArrowIcon, enabled, true);
 
   return numberOfPages < 2 ? null : (
-    <Root layout initial={{opacity: 0}} animate={{opacity: 1}}>
+    <Root layout initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
       {renderStartButton(currentPage !== 1)}
       {renderBackButton(currentPage !== 1)}
       <CurrentPage>{currentPage} / {numberOfPages > 999 ? '999+' : numberOfPages}</CurrentPage>

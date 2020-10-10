@@ -55,7 +55,7 @@ const Results = props => {
     <Root error={props.error} resultsFound={props.items.length} layout>
       {props.error && [<NoResults error>{SERVER_ERROR}</NoResults>, tetrisLink]}
       {!props.error && !props.items.length && <NoResults>{NO_RESULTS}</NoResults>}
-      {props.items.map(i => <ResultOverview item={i} />)}
+      {props.items.map(i => <ResultOverview item={i} key={i.id}/>)}
     </Root>
   )
 };
