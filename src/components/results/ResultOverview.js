@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/macro';
 import StarIcon from "../../star.svg";
-import ResultExtraControls from "./ResultExtraDetails";
+import ResultExtraDetails from "./ResultExtraDetails";
 import {motion} from 'framer-motion';
+import Modal from "react-modal";
+import {theme} from "../../theme";
+import ResultDetails from "./ResultDetails";
+
 
 const Root = styled(motion.div)`
   border-radius: ${props => props.theme.borderRadius};
@@ -17,76 +21,46 @@ const Root = styled(motion.div)`
   }
 `;
 
-const Name = styled.div`
-  text-overflow: fade;
-  white-space: nowrap;
-  overflow: hidden;
-  
-  font-size: 20px;
-  font-weight: bold;
-  font-family: ${props => props.theme.fonts.heading};
-  color: ${props => props.theme.colors.dark};
-  display: flex;
-`;
 
-const Description = styled.div`
-  font-size: 14px;
-  font-style: italic;
-  font-family: ${props => props.theme.fonts.text};
-`;
 
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-`;
+const modalStyle = {
+  overlay: {
+    backgroundColor: 'rgb(0, 0, 0, .8)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    width: '320px',
+  },
+};
 
-const OwnerName = styled.span`
-  font-size: 16px;
-  font-family: ${props => props.theme.fonts.heading};
-  color: ${props => props.theme.colors.dark};
-`;
+const ResultOverview = props => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-const Img = styled.img`
-  max-height: 30px;
-  max-width: 30px;
-  border-radius: ${props => props.theme.borderRadius};
-  margin-right: 6px;
-`;
+  return (
+    <Root initial={{opacity: 0}} animate={{opacity: 1}}>
+      <ResultDetails item={props.item} />
+      <button onClick={() => setIsModalOpen(!isModalOpen)}>click</button>
 
-const Stars = styled.span`
-  font-size: 14px;
-  font-style: italic;
-  font-family: ${props => props.theme.fonts.text};
-  margin-top: 4px;
-`;
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        contentLabel="Repo Extra Details Modal"
+        style={modalStyle}
+      >
+        <ResultDetails item={props.item} />
+        <ResultExtraDetails item={props.item}/>
+      </Modal>
+  </Root>
+  );
+};
 
-const Language = styled.div`
-  font-size: 16px;
-  font-weight: bold;
-  font-family: ${props => props.theme.fonts.heading};
-  color: ${props => props.theme.colors.dark};
-`;
-
-const ResultOverview = props =>
-  <Root initial={{opacity: 0}} animate={{opacity: 1}}>
-    <Name>{props.item.name.toUpperCase()}</Name>
-    <Language>{props.item.language}</Language>
-    <Row>
-      <Img src={props.item.owner.avatar_url}/>
-      <OwnerName>{props.item.owner.login}</OwnerName>
-    </Row>
-    <Row>
-      <Img src={StarIcon}/>
-      <Stars>({props.item.stargazers_count})</Stars>
-    </Row>
-    <Description>
-      {
-        props.item.description && props.item.description.length > 250
-          ? props.item.description.slice(0, 249) + '...'
-          : props.item.description
-      }
-    </Description>
-    <ResultExtraControls item={props.item}/>
-  </Root>;
 
 export default ResultOverview;

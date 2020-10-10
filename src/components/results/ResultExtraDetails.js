@@ -51,16 +51,11 @@ const renderDetails = item =>
 ;
 
 const ResultExtraDetails = props => {
-  const [isOpen, setIsOpen] = useState(false);
-
   return(
     <Root>
       {
-        isOpen && renderDetails(props.item)
+        renderDetails(props.item)
       }
-      <Button onClick={() => setIsOpen(!isOpen)} >
-        <Icon src={ArrowIcon} isOpen={isOpen} />
-      </Button>
     </Root>
   );
 };
