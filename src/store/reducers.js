@@ -25,11 +25,8 @@ const defaultState = {
   areControlsOpen: false,
 };
 
-export const toggleControls = () =>
-  (dispatch, getState) => dispatch({type: TOGGLE_CONTROLS, data: !getState().areControlsOpen});
-
-export const toggleControlsOff = () =>
-  (dispatch) => dispatch({type: TOGGLE_CONTROLS, data: false});
+export const toggleControls = areControlsOpen =>
+  (dispatch) => dispatch({type: TOGGLE_CONTROLS, data: areControlsOpen});
 
 
 export const setFilter = filter => dispatch => dispatch({type: SET_FILTER, data: filter});

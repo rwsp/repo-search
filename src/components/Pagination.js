@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import {connect} from "react-redux";
-import {submitSearch, toggleControlsOff} from "../store/reducers";
+import {submitSearch, toggleControls} from "../store/reducers";
 import LeftIcon from "../left-arrow-angle.svg";
 import RightIcon from "../right-arrow-angle.svg";
 import DoubleArrowIcon from "../double-left-angle-arrows.svg";
@@ -63,7 +63,7 @@ const Pagination = props => {
       enabled={enabled}
       onClick={() => {
         enabled && submitSearch(searchValue, toPage);
-        props.disableSettings();
+        props.toggleControls(false);
       }}
     >
       <Icon
@@ -98,7 +98,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   submitSearch: (value, page) => dispatch(submitSearch(value, page)),
-  disableSettings: () => dispatch(toggleControlsOff()),
+  toggleControls: areControlsOpen => dispatch(toggleControls(areControlsOpen)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/macro';
 import {connect} from "react-redux";
-import {submitSearch, toggleControls, toggleControlsOff} from "../store/reducers";
+import {submitSearch, toggleControls} from "../store/reducers";
 import GlassIcon from '../magnifying-glass.svg';
 import CogIcon from '../settings.png';
 import {Box, RotateAndScale} from "../theme";
@@ -88,7 +88,7 @@ const Search = props => {
   const onSubmit = e => {
     if(searchValue.length) {
       e.target.blur();
-      props.toggleControlsOff();
+      props.toggleControls(false);
       props.submitSearch(searchValue);
     }
   };
@@ -96,7 +96,7 @@ const Search = props => {
   return (
     <Root layout>
       <InputForm>
-        <Controls onClick={() => props.toggleControls()}>
+        <Controls onClick={() => props.toggleControls(!props.areControlsOpen)}>
           <Cog src={CogIcon} alt={'cog-icon'} height={15} />
         </Controls>
         <Input
@@ -115,8 +115,7 @@ const Search = props => {
 
 const mapDispatchToProps = dispatch => ({
   submitSearch: value => dispatch(submitSearch(value)),
-  toggleControls: () => dispatch(toggleControls()),
-  toggleControlsOff: () => dispatch(toggleControlsOff()),
+  toggleControls: areControlsOpen => dispatch(toggleControls(areControlsOpen)),
 });
 
 const mapStateToProps = state => ({

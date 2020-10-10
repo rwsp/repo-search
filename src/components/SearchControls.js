@@ -22,7 +22,7 @@ const Close = styled.img`
 const SearchControls = props =>
   <AnimatePresence>
     <Root initial={{opacity: 0}} exit={{opacity: 1}} animate={{opacity: 1}} transition={{duration: 1}}>
-      <Close src={CloseIcon} height={22} onClick={() => props.toggleControls()}/>
+      <Close src={CloseIcon} height={22} onClick={() => props.toggleControls(false)}/>
       <Sort />
       <Filters/>
     </Root>
@@ -31,7 +31,7 @@ const SearchControls = props =>
 ;
 
 const mapDispatchToProps = dispatch => ({
-  toggleControls: () => dispatch(toggleControls()),
+  toggleControls: areControlsOpen => dispatch(toggleControls(areControlsOpen)),
 });
 
 export default connect(null, mapDispatchToProps)(SearchControls);
