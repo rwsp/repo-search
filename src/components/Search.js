@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/macro';
 import {connect} from "react-redux";
-import {submitSearch, toggleControls} from "../store/reducers";
+import {submitSearch, toggleControls, toggleControlsOff} from "../store/reducers";
 import GlassIcon from '../magnifying-glass.svg';
 import CogIcon from '../settings.png';
 import {Box, RotateAndScale} from "../theme";
@@ -76,20 +76,21 @@ const Cog = styled.img`
 
 const onChange = setSearchValue => e => setSearchValue(e.target.value);
 
-const onSubmit = (submit, value) => e => {
-  e.preventDefault();
-
-  if(value.length) {
-    submit(value);
-  }
-};
-
 const Search = props => {
   const [searchValue, setSearchValue] = useState('');
 
+  const onSubmit = e => {
+    e.preventDefault();
+
+    if(searchValue.length) {
+      props.toggleControlsOff();
+      props.submitSearch(searchValue);
+    }
+  };
+
   return (
     <Root layout>
-      <InputForm as="form" onSubmit={onSubmit(props.submitSearch, searchValue)}>
+      <InputForm as="form" onSubmit={onSubmit}>
         <Controls onClick={() => props.toggleControls()}>
           <Cog src={CogIcon} alt={'cog-icon'} height={15} />
         </Controls>
@@ -98,7 +99,7 @@ const Search = props => {
           onChange={onChange(setSearchValue)}
           placeholder={'Search for your repo'}
         />
-        <MagnifyingGlass onClick={onSubmit(props.submitSearch, searchValue)}>
+        <MagnifyingGlass onClick={onSubmit}>
           <img src={GlassIcon} alt={'glass-icon'} height={15}/>
         </MagnifyingGlass>
       </InputForm>
@@ -109,6 +110,7 @@ const Search = props => {
 const mapDispatchToProps = dispatch => ({
   submitSearch: value => dispatch(submitSearch(value)),
   toggleControls: () => dispatch(toggleControls()),
+  toggleControlsOff: () => dispatch(toggleControlsOff()),
 });
 
 const mapStateToProps = state => ({
