@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import {connect} from "react-redux";
-import {submitSearch} from "../store/reducers";
+import {submitSearch, toggleControlsOff} from "../store/reducers";
 import LeftIcon from "../left-arrow-angle.svg";
 import RightIcon from "../right-arrow-angle.svg";
 import DoubleArrowIcon from "../double-left-angle-arrows.svg";
@@ -61,7 +61,10 @@ const Pagination = props => {
   const renderButton = (toPage, src, enabled, flip) =>
     <Button
       enabled={enabled}
-      onClick={() => enabled && submitSearch(searchValue, toPage)}
+      onClick={() => {
+        enabled && submitSearch(searchValue, toPage);
+        props.disableSettings();
+      }}
     >
       <Icon
         flip={flip}
@@ -77,7 +80,7 @@ const Pagination = props => {
   const renderEndButton = enabled => renderButton(numberOfPages, DoubleArrowIcon, enabled, true);
 
   return numberOfPages < 2 ? null : (
-    <Root layout initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
+    <Root layout initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: .25}}>
       {renderStartButton(currentPage !== 1)}
       {renderBackButton(currentPage !== 1)}
       <CurrentPage>{currentPage} / {numberOfPages > 999 ? '999+' : numberOfPages}</CurrentPage>
@@ -95,6 +98,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   submitSearch: (value, page) => dispatch(submitSearch(value, page)),
+  disableSettings: () => dispatch(toggleControlsOff()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
