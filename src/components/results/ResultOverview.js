@@ -68,7 +68,7 @@ const Language = styled.div`
 `;
 
 const ResultOverview = props =>
-  <Root initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
+  <Root initial={{opacity: 0}} animate={{opacity: 1}}>
     <Name>{props.item.name.toUpperCase()}</Name>
     <Language>{props.item.language}</Language>
     <Row>

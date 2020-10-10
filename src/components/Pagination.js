@@ -72,7 +72,7 @@ const Pagination = props => {
   const renderEndButton = enabled => renderButton(numberOfPages, DoubleArrowIcon, enabled, true);
 
   return numberOfPages < 2 ? null : (
-    <Root layout initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
+    <Root layout initial={{opacity: 0}} animate={{opacity: 1}}>
       {renderStartButton(currentPage !== 1)}
       {renderBackButton(currentPage !== 1)}
       <CurrentPage>{currentPage} / {numberOfPages > 999 ? '999+' : numberOfPages}</CurrentPage>
