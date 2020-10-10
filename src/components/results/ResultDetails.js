@@ -65,6 +65,7 @@ const Button = styled(Box)`
    background-color: ${props => props.theme.colors.dark};
   height: 40px;
   width: 40px;
+  min-width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;

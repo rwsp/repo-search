@@ -13,6 +13,7 @@ const Root = styled(motion.div)`
   width: 100%;
   padding: 16px 16px 0 16px;
   margin-bottom: 10px;
+  overflow: hidden;
 `;
 
 const modalStyle = {

@@ -79,10 +79,15 @@ const onChange = setSearchValue => e => setSearchValue(e.target.value);
 const Search = props => {
   const [searchValue, setSearchValue] = useState('');
 
-  const onSubmit = e => {
-    e.preventDefault();
+  const onKeyPress = e => {
+    if(e.key === 'Enter'){
+      onSubmit(e);
+    }
+  };
 
+  const onSubmit = e => {
     if(searchValue.length) {
+      e.target.blur();
       props.toggleControlsOff();
       props.submitSearch(searchValue);
     }
@@ -90,7 +95,7 @@ const Search = props => {
 
   return (
     <Root layout>
-      <InputForm as="form" onSubmit={onSubmit}>
+      <InputForm>
         <Controls onClick={() => props.toggleControls()}>
           <Cog src={CogIcon} alt={'cog-icon'} height={15} />
         </Controls>
@@ -98,6 +103,7 @@ const Search = props => {
           value={searchValue}
           onChange={onChange(setSearchValue)}
           placeholder={'Search for your repo'}
+          onKeyPress={onKeyPress}
         />
         <MagnifyingGlass onClick={onSubmit}>
           <img src={GlassIcon} alt={'glass-icon'} height={15}/>
