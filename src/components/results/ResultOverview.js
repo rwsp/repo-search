@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import styled from 'styled-components/macro';
 import StarIcon from "../../star.svg";
 import ResultExtraControls from "./ResultExtraDetails";
+import {motion} from 'framer-motion';
 
-const Root = styled.div`
+const Root = styled(motion.div)`
   border-radius: ${props => props.theme.borderRadius};
   border: 2px solid ${props => props.theme.colors.dark};
   color: ${props => props.theme.colors.dark};
@@ -67,7 +68,7 @@ const Language = styled.div`
 `;
 
 const ResultOverview = props =>
-  <Root>
+  <Root initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
     <Name>{props.item.name.toUpperCase()}</Name>
     <Language>{props.item.language}</Language>
     <Row>

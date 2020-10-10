@@ -5,8 +5,9 @@ import {submitSearch, toggleControls} from "../store/reducers";
 import GlassIcon from '../magnifying-glass.svg';
 import CogIcon from '../settings.png';
 import {Box} from "../theme";
+import {motion} from "framer-motion";
 
-const Root = styled.div`
+const Root = styled(motion.div)`
   display: flex;
   flex-direction: column;
   font-family: ${props => props.theme.fonts.heading};
@@ -97,7 +98,7 @@ const Search = props => {
   const [searchValue, setSearchValue] = useState('');
 
   return (
-    <Root>
+    <Root layout>
       <InputForm as="form" onSubmit={onSubmit(props.submitSearch, searchValue)}>
         <Controls onClick={() => props.toggleControls()}>
           <Cog src={CogIcon} alt={'cog-icon'} height={15} />

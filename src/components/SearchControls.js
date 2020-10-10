@@ -7,19 +7,22 @@ import CloseIcon from "../close.svg"
 import {connect} from "react-redux";
 import {toggleControls} from "../store/reducers";
 
+const Root = styled(Box)`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Close = styled.img`
-  position: relative;
-  top: -14px;
-  left: -14px;
   cursor: pointer;
+  align-self: flex-end;
 `;
 
 const SearchControls = props =>
-  <Box>
+  <Root>
     <Close src={CloseIcon} height={22} onClick={() => props.toggleControls()}/>
     <Sort />
     <Filters/>
-  </Box>
+  </Root>
 ;
 
 const mapDispatchToProps = dispatch => ({

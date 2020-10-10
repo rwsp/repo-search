@@ -6,6 +6,7 @@ import LeftIcon from "../left-arrow-angle.svg";
 import RightIcon from "../right-arrow-angle.svg";
 import DoubleArrowIcon from "../double-left-angle-arrows.svg";
 import {css} from "styled-components";
+import {motion} from "framer-motion";
 
 const styling = css`
   margin: 0 5px;
@@ -21,7 +22,7 @@ const styling = css`
   align-items: center;
 `;
 
-const Root = styled.div`
+const Root = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,7 +72,7 @@ const Pagination = props => {
   const renderEndButton = enabled => renderButton(numberOfPages, DoubleArrowIcon, enabled, true);
 
   return numberOfPages < 2 ? null : (
-    <Root>
+    <Root layout initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
       {renderStartButton(currentPage !== 1)}
       {renderBackButton(currentPage !== 1)}
       <CurrentPage>{currentPage} / {numberOfPages > 999 ? '999+' : numberOfPages}</CurrentPage>
