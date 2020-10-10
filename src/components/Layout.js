@@ -48,7 +48,7 @@ const Cta = styled.span`
 
 const Layout = props => (
   <Root>
-    <Panel success={props.success}>
+    <Panel initial={{opacity: 0}} animate={{opacity: 1}}>
       <Cta>Find Some Repos</Cta>
       <Search />
       {props.areControlsOpen && <SearchControls />}

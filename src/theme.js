@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { motion } from 'framer-motion';
 
 const colors = {
   wheat: '#e1ca96',
@@ -34,7 +35,7 @@ export const theme = {
   breakpoint: '600px',
 };
 
-export const Box = styled.div`
+export const Box = styled(motion.div)`
   background-color: ${colors.white};
   box-shadow: ${theme.boxShadow};
   border-radius: ${theme.borderRadius};

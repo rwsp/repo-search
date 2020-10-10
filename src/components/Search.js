@@ -52,6 +52,13 @@ const MagnifyingGlass = styled.div`
   align-items: center;
   opacity: .4;
   cursor: pointer;
+  
+    :hover{
+    transform: rotate(90deg) scale(1.4);
+  }
+  
+  transition: transform 250ms ease;
+
 `;
 
 const Controls = styled.div`
@@ -68,6 +75,12 @@ const Controls = styled.div`
 
 const Cog = styled.img`
   filter: invert(1);
+    
+    :hover{
+    transform: rotate(90deg) scale(1.4);
+  }
+  
+  transition: transform 250ms ease;
 `;
 
 const onChange = setSearchValue => e => setSearchValue(e.target.value);
