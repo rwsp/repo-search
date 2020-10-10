@@ -15,6 +15,7 @@ const Name = styled.div`
   font-family: ${props => props.theme.fonts.heading};
   color: ${props => props.theme.colors.dark};
   display: flex;
+  margin-right: 6px;
 `;
 
 const Description = styled.div`

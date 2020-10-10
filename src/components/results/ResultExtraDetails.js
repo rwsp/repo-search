@@ -27,12 +27,17 @@ const Label = styled.div`
   background-color: ${props => props.theme.colors.dark};
   color: ${props => props.theme.colors.light};
   padding: 6px;
+  margin-right: 2px;
 `;
 
 const Value = styled.span`
   font-size: 14px;
   letter-spacing: -1px;
   font-style: italic;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 2px;
 `;
 
 const A = styled.a`
