@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { motion } from 'framer-motion';
+import {css} from "styled-components";
 
 const colors = {
   wheat: '#e1ca96',
@@ -48,4 +49,12 @@ export const Label = styled.span`
   font-weight: bold;
   letter-spacing: -1px;
   font-size: 16px;
+`;
+
+export const RotateAndScale = css`
+  :hover{
+    transform: rotate(90deg) scale(1.4);
+  }
+  
+  transition: transform 250ms ease;
 `;

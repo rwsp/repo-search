@@ -30,6 +30,7 @@ const Toggle = styled.div`
   border-radius: ${props => props.theme.borderRadius};
   color: ${props => props.selected ? props.theme.colors.white : props.theme.colors.dark};
   cursor: pointer;
+  transition: all .5s ease;
   ${props => props.selected && `background-color: ${props.theme.colors.dark};`}
 `;
 

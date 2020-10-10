@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {submitSearch, toggleControls} from "../store/reducers";
 import GlassIcon from '../magnifying-glass.svg';
 import CogIcon from '../settings.png';
-import {Box} from "../theme";
+import {Box, RotateAndScale} from "../theme";
 import {motion} from "framer-motion";
 
 const Root = styled(motion.div)`
@@ -53,12 +53,7 @@ const MagnifyingGlass = styled.div`
   align-items: center;
   opacity: .4;
   cursor: pointer;
-  
-    :hover{
-    transform: rotate(90deg) scale(1.4);
-  }
-  
-  transition: transform 250ms ease;
+  ${RotateAndScale};
 
 `;
 
@@ -76,12 +71,7 @@ const Controls = styled.div`
 
 const Cog = styled.img`
   filter: invert(1);
-    
-    :hover{
-    transform: rotate(90deg) scale(1.4);
-  }
-  
-  transition: transform 250ms ease;
+  ${RotateAndScale};
 `;
 
 const onChange = setSearchValue => e => setSearchValue(e.target.value);
