@@ -12,13 +12,21 @@ const Root = styled.div`
 
 const Details = styled.div`
   width: 100%;
+  border-radius: ${props => props.theme.borderRadius};
+  border: 2px solid ${props => props.theme.colors.dark};
 `;
 
-const Label = styled.span`
+const Label = styled.div`
   font-size: 14px;
   letter-spacing: -1px;
   font-weight: bold;
-  margin-right: 4px;
+  width: 80px;
+  min-width: 80px;
+  display: flex;
+  justify-content: flex-end;
+  background-color: ${props => props.theme.colors.dark};
+  color: ${props => props.theme.colors.light};
+  padding: 6px;
 `;
 
 const Value = styled.span`
@@ -30,48 +38,59 @@ const Value = styled.span`
 const A = styled.a`
   font-size: 14px;
   letter-spacing: -1px;
-  font-weight: bold;
+  font-style: italic;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+`;
+
+const Row = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const renderDetails = item =>
   <Details>
-    <div>
-      <Label>Archived:</Label>
-      <Value>{!item.archived ? 'no' : 'yes'}</Value>
-    </div>
 
-    <div>
-      <Label>Created:</Label>
-      <Value>{item.created_at}</Value>
-    </div>
-
-    <div>
-      <Label>Pushed:</Label>
-      <Value>${item.pushed_at}</Value>
-    </div>
-
-    <div>
-      <Label>Forks:</Label>
-      <Value>{item.forks}</Value>
-    </div>
-
-    <div>
-      <Label>Full Name:</Label>
-      <Value>{item.full_name}</Value>
-    </div>
-
-    <div>
-      <Label>id:</Label>
+    <Row>
+      <Label>id</Label>
       <Value>{item.id}</Value>
-    </div>
+    </Row>
 
-    <div>
-      <A href={item.html_url} target="_blank">GitHub</A>
-    </div>
+    <Row>
+      <Label>Archived</Label>
+      <Value>{!item.archived ? 'no' : 'yes'}</Value>
+    </Row>
 
-    <div>
-      <A href={item.url} target="_blank">Full Details</A>
-    </div>
+    <Row>
+      <Label>Created</Label>
+      <Value>{new Date(item.created_at).toLocaleDateString()}</Value>
+    </Row>
+
+    <Row>
+      <Label>Pushed</Label>
+      <Value>{new Date(item.pushed_at).toLocaleDateString()}</Value>
+    </Row>
+
+    <Row>
+      <Label>Forks</Label>
+      <Value>{item.forks}</Value>
+    </Row>
+
+    <Row>
+      <Label>Full Name</Label>
+      <Value>{item.full_name}</Value>
+    </Row>
+
+    <Row>
+      <Label>GitHub</Label>
+      <A href={item.html_url} target="_blank">{item.html_url}</A>
+    </Row>
+
+    <Row>
+      <Label>Full Details</Label>
+      <A href={item.url} target="_blank">{item.url}</A>
+    </Row>
   </Details>
 ;
 
