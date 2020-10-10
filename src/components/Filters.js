@@ -33,7 +33,7 @@ const Filters = props =>
       {
         filterLanguages
           .sort()
-          .map(language => <option key={language}>{language}</option>)
+          .map(language => <option key={language} selected={props.filter === language}>{language}</option>)
       }
     </Select>
   </Root>
