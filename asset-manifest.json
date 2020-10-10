@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/repo-search/static/css/main.5ccaf286.chunk.css",
-    "main.js": "/repo-search/static/js/main.fa7d8a5e.chunk.js",
-    "main.js.map": "/repo-search/static/js/main.fa7d8a5e.chunk.js.map",
+    "main.js": "/repo-search/static/js/main.06861e2c.chunk.js",
+    "main.js.map": "/repo-search/static/js/main.06861e2c.chunk.js.map",
     "runtime-main.js": "/repo-search/static/js/runtime-main.54b60e50.js",
     "runtime-main.js.map": "/repo-search/static/js/runtime-main.54b60e50.js.map",
-    "static/js/2.1280af6f.chunk.js": "/repo-search/static/js/2.1280af6f.chunk.js",
-    "static/js/2.1280af6f.chunk.js.map": "/repo-search/static/js/2.1280af6f.chunk.js.map",
+    "static/js/2.1a852445.chunk.js": "/repo-search/static/js/2.1a852445.chunk.js",
+    "static/js/2.1a852445.chunk.js.map": "/repo-search/static/js/2.1a852445.chunk.js.map",
     "index.html": "/repo-search/index.html",
-    "precache-manifest.43f75909d591662024531cbf09bf6f0a.js": "/repo-search/precache-manifest.43f75909d591662024531cbf09bf6f0a.js",
+    "precache-manifest.068521cee897385b0f5b6ce3f894862f.js": "/repo-search/precache-manifest.068521cee897385b0f5b6ce3f894862f.js",
     "service-worker.js": "/repo-search/service-worker.js",
     "static/css/main.5ccaf286.chunk.css.map": "/repo-search/static/css/main.5ccaf286.chunk.css.map",
-    "static/js/2.1280af6f.chunk.js.LICENSE.txt": "/repo-search/static/js/2.1280af6f.chunk.js.LICENSE.txt",
+    "static/js/2.1a852445.chunk.js.LICENSE.txt": "/repo-search/static/js/2.1a852445.chunk.js.LICENSE.txt",
     "static/media/close.svg": "/repo-search/static/media/close.bbfe38db.svg",
     "static/media/double-left-angle-arrows.svg": "/repo-search/static/media/double-left-angle-arrows.990007de.svg",
     "static/media/left-arrow-angle.svg": "/repo-search/static/media/left-arrow-angle.da903ece.svg",
@@ -19,12 +19,13 @@
     "static/media/magnifying-glass.svg": "/repo-search/static/media/magnifying-glass.718623c2.svg",
     "static/media/right-arrow-angle.svg": "/repo-search/static/media/right-arrow-angle.b1c0578d.svg",
     "static/media/settings.png": "/repo-search/static/media/settings.56d72ea8.png",
-    "static/media/star.svg": "/repo-search/static/media/star.56ef2525.svg"
+    "static/media/star.svg": "/repo-search/static/media/star.56ef2525.svg",
+    "static/media/three-dots.svg": "/repo-search/static/media/three-dots.ba0cc007.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.54b60e50.js",
-    "static/js/2.1280af6f.chunk.js",
+    "static/js/2.1a852445.chunk.js",
     "static/css/main.5ccaf286.chunk.css",
-    "static/js/main.fa7d8a5e.chunk.js"
+    "static/js/main.06861e2c.chunk.js"
   ]
 }
