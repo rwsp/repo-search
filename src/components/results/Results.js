@@ -20,27 +20,8 @@ const NoResults = styled.span`
   color: ${props => props.error ? props.theme.colors.light : props.theme.colors.dark};
 `;
 
-const Link = styled.a`
-  font-family: ${props => props.theme.fonts.heading};
-  font-size: 28px;
-  font-weight: bold;
-  letter-spacing: -1px;
-  color: ${props => props.theme.colors.dark};
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90px;
-  width: 100%;
-  text-decoration: none;
-  background-color: ${props => props.theme.colors.light};
-  border-radius: ${props => props.theme.borderRadius};
-`;
-
-const SERVER_ERROR = "Server error. Try again later. Here's some Tetris!";
-const NO_RESULTS = "No results found. Have you searched for Tetris?";
-
-const tetrisLink = <Link href={'https://tetris.com/play-tetris'} target={'_blank'}>PLAY TETRIS</Link>;
+const SERVER_ERROR = "Server error. Try again later.";
+const NO_RESULTS = "No results found.";
 
 const Results = props => {
   if(!props.submitted) {
@@ -53,7 +34,7 @@ const Results = props => {
 
   return (
     <Root error={props.error} resultsFound={props.items.length} layout>
-      {props.error && [<NoResults error>{SERVER_ERROR}</NoResults>, tetrisLink]}
+      {props.error && <NoResults error>{SERVER_ERROR}</NoResults>}
       {!props.error && !props.items.length && <NoResults>{NO_RESULTS}</NoResults>}
       {props.items.map(i => <ResultOverview item={i} key={i.id}/>)}
     </Root>
