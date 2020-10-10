@@ -93,7 +93,7 @@ const renderDetails = item =>
     </Row>
 
     <Row>
-      <Label>Full Details</Label>
+      <Label>Details</Label>
       <A href={item.url} target="_blank">{item.url}</A>
     </Row>
   </Details>
