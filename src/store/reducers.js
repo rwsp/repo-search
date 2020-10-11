@@ -1,5 +1,6 @@
 import apiSearch from "../api";
-import {RESULTS_PER_PAGE, sorts} from "../constants";
+import {sorts} from "../constants";
+import {toNumberOfPages} from "./module";
 
 /**
  *
@@ -17,6 +18,9 @@ const SET_SORT = 'SET_SORT';
 const TOGGLE_CONTROLS = 'TOGGLE_CONTROLS';
 
 const initialResults = {
+  numberOfExistentItems: null, //number of existent items. this differs from available items bc github has a limit
+                              //on the number of items returned by its search repository api
+
   numberOfPages: null,        //number of pages available for given search
   currentPage: null,          //page with app's current items
   items: [],                  //items in current page
@@ -47,7 +51,8 @@ export const submitSearch = (value, page = 1) => async (dispatch, getState) => {
   const { filter, sort, results } = getState();
 
   const normalize = _result => ({
-    numberOfPages: Math.floor( _result.data.total_count / RESULTS_PER_PAGE),
+    numberOfExistentItems: _result.data.total_count,
+    numberOfPages: toNumberOfPages(_result.data.total_count),
     currentPage: page,
     items: _result.data.items,
   });

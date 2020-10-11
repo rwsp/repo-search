@@ -7,6 +7,8 @@ import {connect} from "react-redux";
 import {Box} from "../theme";
 import Pagination from "./Pagination";
 import {AnimateSharedLayout, motion} from "framer-motion";
+import Warning from "./Warning";
+import {MAX_RESULTS_PER_SEARCH} from "../constants";
 
 const Root = styled.div`
   min-height: 100vh;
@@ -47,6 +49,18 @@ const Cta = styled(motion.span)`
   font-family: ${props => props.theme.fonts.heading};
 `;
 
+const toWarning = numberOfExistentItems => {
+  if(numberOfExistentItems <= MAX_RESULTS_PER_SEARCH) {
+    return null;
+  }
+
+  return (
+    `Displaying top ${MAX_RESULTS_PER_SEARCH.toLocaleString()} 
+    of ${numberOfExistentItems.toLocaleString()} repositories...`
+  );
+
+};
+
 /**
  *
  * Layout - top level visual component. Contains all visual UI
@@ -60,9 +74,11 @@ const Layout = props => (
         <Cta layout>Find Some Repos</Cta>
         <Search />
           {props.showControls && <SearchControls />}
+          {props.warning && <Warning message={props.warning} />}
           {props.showPagination && <Pagination />}
           <Results />
           {props.showPagination && <Pagination />}
+          {props.warning && <Warning message={props.warning} />}
       </Panel>
     </AnimateSharedLayout>
 
@@ -72,6 +88,7 @@ const Layout = props => (
 const mapStateToProps = state => ({
   showControls: state.showControls,
   showPagination: state.success && state.results.numberOfPages > 1,
+  warning: toWarning(state.results.numberOfExistentItems),
 });
 
 export default connect(mapStateToProps)(Layout);

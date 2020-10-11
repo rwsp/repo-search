@@ -10,7 +10,14 @@
  * number of results to visually display at once
  *
  */
-export const RESULTS_PER_PAGE = 12;
+export const RESULTS_PER_PAGE = 10;
+
+/**
+ *
+ * max number of results returned by github api
+ *
+ */
+export const MAX_RESULTS_PER_SEARCH = 1000;
 
 
 /**

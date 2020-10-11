@@ -58,6 +58,7 @@ const CurrentPage = styled.span`
 /**
  *
  * Pagination - visual component/controls for navigating pagination
+ *  -only first 1000 results are available from github api
  *
  */
 
@@ -89,7 +90,7 @@ const Pagination = props => {
     <Root layout initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: .25}}>
       {renderStartButton(currentPage !== 1)}
       {renderBackButton(currentPage !== 1)}
-      <CurrentPage>{currentPage} / {numberOfPages > 999 ? '999+' : numberOfPages}</CurrentPage>
+      <CurrentPage>{currentPage} / {numberOfPages}</CurrentPage>
       {renderForwardButton(currentPage < numberOfPages)}
       {renderEndButton(currentPage < numberOfPages)}
     </Root>
