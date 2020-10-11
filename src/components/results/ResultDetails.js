@@ -9,7 +9,6 @@ const Name = styled.div`
   text-overflow: fade;
   white-space: nowrap;
   overflow: hidden;
-  
   font-size: 20px;
   font-weight: bold;
   font-family: ${props => props.theme.fonts.heading};
@@ -62,7 +61,7 @@ const Button = styled(Box)`
   margin: 0;
   border: none;
   outline: none;
-   background-color: ${props => props.theme.colors.dark};
+  background-color: ${props => props.theme.colors.dark};
   height: 40px;
   width: 40px;
   min-width: 40px;
@@ -74,15 +73,26 @@ const Button = styled(Box)`
 
 const Root = styled.div`
   > * {
-  margin-bottom: 14px;
+    margin-bottom: 14px;
   }
 `;
 
 const Icon = styled.img`
   filter: invert(1);
-  
   ${RotateAndScale};
 `;
+
+const DESCRIPTION_MAX_LENGTH = 250;
+
+const toDescription = item => item.description && item.description.length > DESCRIPTION_MAX_LENGTH
+  ? item.description.slice(0, DESCRIPTION_MAX_LENGTH - 1) + '...'
+  : item.description;
+
+/**
+ *
+ * ResultDetails - visual component for ESSENTIAL details for a single search result
+ *
+ */
 
 const ResultDetails = props =>
 <Root>
@@ -108,9 +118,7 @@ const ResultDetails = props =>
 
   <Description>
     {
-      props.item.description && props.item.description.length > 250
-        ? props.item.description.slice(0, 249) + '...'
-        : props.item.description
+      toDescription(props.item)
     }
   </Description>
 </Root>;

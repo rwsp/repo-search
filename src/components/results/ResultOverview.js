@@ -34,6 +34,12 @@ const modalStyle = {
   },
 };
 
+/**
+ *
+ * ResultOverview - visual parent component for all info for a single search result
+ *
+ */
+
 const ResultOverview = props => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => setIsModalOpen(!isModalOpen);

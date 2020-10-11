@@ -54,6 +54,14 @@ const Row = styled.div`
   align-items: center;
 `;
 
+const toDateString = date => new Date(date).toLocaleDateString();
+
+/**
+ *
+ * ResultExtraDetails - visual component for NON-ESSENTIAL details for a single search result
+ *
+ */
+
 const renderDetails = item =>
   <Details>
 
@@ -69,12 +77,12 @@ const renderDetails = item =>
 
     <Row>
       <Label>Created</Label>
-      <Value>{new Date(item.created_at).toLocaleDateString()}</Value>
+      <Value>{toDateString(item.created_at)}</Value>
     </Row>
 
     <Row>
       <Label>Pushed</Label>
-      <Value>{new Date(item.pushed_at).toLocaleDateString()}</Value>
+      <Value>{toDateString(item.pushed_at)}</Value>
     </Row>
 
     <Row>

@@ -23,6 +23,24 @@ const NoResults = styled.span`
 const SERVER_ERROR = "Server error. Try again later.";
 const NO_RESULTS = "No results found.";
 
+const toContent = (error, items) => {
+  if(error) {
+    return <NoResults error>{SERVER_ERROR}</NoResults>;
+  }
+
+  if(!error && !items.length) {
+    return <NoResults>{NO_RESULTS}</NoResults>;
+  }
+
+  return items.map(i => <ResultOverview item={i} key={i.id}/>);
+};
+
+/**
+ *
+ * ResultExtraDetails - visual parent component for all search results
+ *
+ */
+
 const Results = props => {
   if(!props.submitted) {
     return null;
@@ -34,13 +52,12 @@ const Results = props => {
 
   return (
     <Root error={props.error} resultsFound={props.items.length} layout>
-      {props.error && <NoResults error>{SERVER_ERROR}</NoResults>}
-      {!props.error && !props.items.length && <NoResults>{NO_RESULTS}</NoResults>}
-      {props.items.map(i => <ResultOverview item={i} key={i.id}/>)}
+      {
+        toContent(props.error, props.items)
+      }
     </Root>
   )
 };
-;
 
 const mapStateToProps = state => ({
   submitted: state.submitted,
