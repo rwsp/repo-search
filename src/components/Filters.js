@@ -28,12 +28,12 @@ const onChange = setFilter => e => setFilter(e.target.value);
 const Filters = props =>
   <Root>
     <Label>Language</Label>
-    <Select onChange={onChange(props.setFilter)}>
+    <Select onChange={onChange(props.setFilter)} value={props.filter}>
       <option value={''}>All</option>
       {
         filterLanguages
           .sort()
-          .map(language => <option key={language} selected={props.filter === language}>{language}</option>)
+          .map(language => <option key={language}>{language}</option>)
       }
     </Select>
   </Root>
