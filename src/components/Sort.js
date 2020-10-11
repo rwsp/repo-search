@@ -43,6 +43,11 @@ const toToggle = (selectedSort, sort, setSort) =>
     {sort.value}
   </Toggle>;
 
+/**
+ *
+ * Sort - visual component/controls for available/selectable sorts (best match, # of stars, etc)
+ *
+ */
 
 const Sort = props => {
   const { selectedSort, setSort } = props;
@@ -51,7 +56,10 @@ const Sort = props => {
     <Root>
       <Label>Sort</Label>
       <Buttons>
-        {Object.keys(sorts).map(key => toToggle(selectedSort, sorts[key], setSort))}
+        {
+          Object.keys(sorts)
+            .map(key => toToggle(selectedSort, sorts[key], setSort))
+        }
       </Buttons>
     </Root>
   );

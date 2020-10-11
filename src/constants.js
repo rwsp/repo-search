@@ -1,6 +1,23 @@
+/**
+ *
+ * constants.js - app constants
+ *
+ */
+
+
+/**
+ *
+ * number of results to visually display at once
+ *
+ */
 export const RESULTS_PER_PAGE = 12;
 
-//values for result sorting
+
+/**
+ *
+ * sorts - object tree for available sort options
+ *
+ */
 export const sorts = {
   BEST_MATCH: {
     value: 'Match',
@@ -12,7 +29,14 @@ export const sorts = {
   }
 };
 
-//current top 50 current languages in GitHub according to https://madnight.github.io/githut/#/pull_requests/2020/3
+
+/**
+ *
+ * current top 50 languages in GitHub according to https://madnight.github.io/githut/#/pull_requests/2020/3
+ * used for language filter
+ * todo - get languages from public api somewhere
+ *
+ */
 export const filterLanguages = [
   'JavaScript',
   'Python',

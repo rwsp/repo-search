@@ -12,6 +12,12 @@ Modal.setAppElement('#root');
 
 const store = createStore(defaultReducer, applyMiddleware(thunk));
 
+/**
+ *
+ * App - top level non visual component for entire app tree. Provides a store and a theme to all children.
+ *
+ */
+
 const App = () => (
   <Provider store={store}>
     <ThemeProvider theme={theme}>

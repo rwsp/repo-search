@@ -76,6 +76,12 @@ const Cog = styled.img`
 
 const onChange = setSearchValue => e => setSearchValue(e.target.value);
 
+/**
+ *
+ * Search - visual component/controls for user's search input
+ *
+ */
+
 const Search = props => {
   const [searchValue, setSearchValue] = useState('');
 

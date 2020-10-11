@@ -1,6 +1,14 @@
 import apiSearch from "../api";
 import {RESULTS_PER_PAGE, sorts} from "../constants";
 
+/**
+ *
+ * reducers - default reducer and action providers for app state.
+ *
+ * middleware: thunk
+ *
+ */
+
 const SEARCH_SUBMITTED = 'SEARCH_SUBMITTED';
 const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
 const SEARCH_FAILURE = 'SEARCH_FAILURE';
@@ -9,20 +17,20 @@ const SET_SORT = 'SET_SORT';
 const TOGGLE_CONTROLS = 'TOGGLE_CONTROLS';
 
 const initialResults = {
-  numberOfPages: null,
-  currentPage: null,
-  items: [],
+  numberOfPages: null,        //number of pages available for given search
+  currentPage: null,          //page with app's current items
+  items: [],                  //items in current page
 };
 
 const defaultState = {
-  submitted: false,
-  success: false,
-  error: false,
-  results: initialResults,
-  filter: '',
-  sort: sorts.BEST_MATCH,
-  lastSearchValue: '',
-  showControls: false,
+  submitted: false,           //has the app submitted a search
+  success: false,             //did the api successfully return a result
+  error: false,               //did the api encounter an error during a search
+  results: initialResults,    //search results
+  filter: '',                 //current app search filters
+  sort: sorts.BEST_MATCH,     //current app search sort
+  lastSearchValue: '',        //most recent search value submitted to api
+  showControls: false,        //should the app display search control component
 };
 
 export const toggleControls = showControls =>

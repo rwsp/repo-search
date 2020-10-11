@@ -47,16 +47,22 @@ const Cta = styled(motion.span)`
   font-family: ${props => props.theme.fonts.heading};
 `;
 
+/**
+ *
+ * Layout - top level visual component. Contains all visual UI
+ *
+ */
+
 const Layout = props => (
   <Root>
     <AnimateSharedLayout>
       <Panel layout initial={{opacity: 0}} animate={{opacity: 1}}>
         <Cta layout>Find Some Repos</Cta>
         <Search />
-        {props.showControls && <SearchControls />}
-        {props.showPagination && <Pagination />}
-        <Results />
-        {props.showPagination && <Pagination />}
+          {props.showControls && <SearchControls />}
+          {props.showPagination && <Pagination />}
+          <Results />
+          {props.showPagination && <Pagination />}
       </Panel>
     </AnimateSharedLayout>
 

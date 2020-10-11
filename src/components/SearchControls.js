@@ -19,6 +19,12 @@ const Close = styled.img`
   ${RotateAndScale};
 `;
 
+/**
+ *
+ * SearchControls - visual component/controls for seach control components (sort, filter, etc)
+ *
+ */
+
 const SearchControls = props =>
   <AnimatePresence>
     <Root initial={{opacity: 0}} exit={{opacity: 1}} animate={{opacity: 1}} transition={{duration: 1}}>
@@ -27,7 +33,6 @@ const SearchControls = props =>
       <Filters/>
     </Root>
   </AnimatePresence>
-
 ;
 
 const mapDispatchToProps = dispatch => ({

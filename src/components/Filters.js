@@ -25,6 +25,12 @@ const Select = styled.select`
 
 const onChange = setFilter => e => setFilter(e.target.value);
 
+/**
+ *
+ * Filters - visual component for available/selected filters and their controls
+ *
+ */
+
 const Filters = props =>
   <Root>
     <Label>Language</Label>

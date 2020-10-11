@@ -55,6 +55,12 @@ const CurrentPage = styled.span`
   }
 `;
 
+/**
+ *
+ * Pagination - visual component/controls for navigating pagination
+ *
+ */
+
 const Pagination = props => {
   const { currentPage, numberOfPages, searchValue, submitSearch } = props;
 
