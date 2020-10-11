@@ -31,7 +31,7 @@ const SearchControls = props =>
 ;
 
 const mapDispatchToProps = dispatch => ({
-  toggleControls: areControlsOpen => dispatch(toggleControls(areControlsOpen)),
+  toggleControls: showControls => dispatch(toggleControls(showControls)),
 });
 
 export default connect(null, mapDispatchToProps)(SearchControls);

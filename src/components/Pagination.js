@@ -98,7 +98,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   submitSearch: (value, page) => dispatch(submitSearch(value, page)),
-  toggleControls: areControlsOpen => dispatch(toggleControls(areControlsOpen)),
+  toggleControls: showControls => dispatch(toggleControls(showControls)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

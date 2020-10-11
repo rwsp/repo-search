@@ -53,7 +53,7 @@ const Layout = props => (
       <Panel layout initial={{opacity: 0}} animate={{opacity: 1}}>
         <Cta layout>Find Some Repos</Cta>
         <Search />
-        {props.areControlsOpen && <SearchControls />}
+        {props.showControls && <SearchControls />}
         {props.showPagination && <Pagination />}
         <Results />
         {props.showPagination && <Pagination />}
@@ -64,7 +64,7 @@ const Layout = props => (
 );
 
 const mapStateToProps = state => ({
-  areControlsOpen: state.areControlsOpen,
+  showControls: state.showControls,
   showPagination: state.success && state.results.numberOfPages > 1,
 });
 

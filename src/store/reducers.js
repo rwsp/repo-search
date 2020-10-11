@@ -22,11 +22,11 @@ const defaultState = {
   filter: '',
   sort: sorts.BEST_MATCH,
   lastSearchValue: '',
-  areControlsOpen: false,
+  showControls: false,
 };
 
-export const toggleControls = areControlsOpen =>
-  (dispatch) => dispatch({type: TOGGLE_CONTROLS, data: areControlsOpen});
+export const toggleControls = showControls =>
+  (dispatch) => dispatch({type: TOGGLE_CONTROLS, data: showControls});
 
 
 export const setFilter = filter => dispatch => dispatch({type: SET_FILTER, data: filter});
@@ -91,7 +91,7 @@ export const defaultReducer = (state = defaultState, action) => {
     case TOGGLE_CONTROLS:
       return {
         ...state,
-        areControlsOpen: action.data,
+        showControls: action.data,
       };
     default:
       return state;

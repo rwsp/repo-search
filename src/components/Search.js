@@ -96,7 +96,7 @@ const Search = props => {
   return (
     <Root layout>
       <InputForm>
-        <Controls onClick={() => props.toggleControls(!props.areControlsOpen)}>
+        <Controls onClick={() => props.toggleControls(!props.showControls)}>
           <Cog src={CogIcon} alt={'cog-icon'} height={15} />
         </Controls>
         <Input
@@ -115,11 +115,11 @@ const Search = props => {
 
 const mapDispatchToProps = dispatch => ({
   submitSearch: value => dispatch(submitSearch(value)),
-  toggleControls: areControlsOpen => dispatch(toggleControls(areControlsOpen)),
+  toggleControls: showControls => dispatch(toggleControls(showControls)),
 });
 
 const mapStateToProps = state => ({
-  areControlsOpen: state.areControlsOpen,
+  showControls: state.showControls,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);
