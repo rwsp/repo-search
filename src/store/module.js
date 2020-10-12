@@ -17,5 +17,8 @@ export const toNumberOfPages = numberOfExistentResults => {
     ? numberOfExistentResults
     : MAX_RESULTS_PER_SEARCH;
 
-  return quantity / RESULTS_PER_PAGE;
+  const subtotal = Math.floor( quantity / RESULTS_PER_PAGE );
+  const addRemainder = quantity % RESULTS_PER_PAGE > 0 ? 1 : 0;
+
+  return subtotal + addRemainder;
 };
