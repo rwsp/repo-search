@@ -37,13 +37,11 @@ const defaultState = {
   showControls: false,        //should the app display search control component
 };
 
-export const toggleControls = showControls =>
-  (dispatch) => dispatch({type: TOGGLE_CONTROLS, data: showControls});
+export const toggleControls = showControls =>({type: TOGGLE_CONTROLS, data: showControls});
 
+export const setFilter = filter => ({type: SET_FILTER, data: filter});
 
-export const setFilter = filter => dispatch => dispatch({type: SET_FILTER, data: filter});
-
-export const setSort = sort => dispatch => dispatch({type: SET_SORT, data: sort});
+export const setSort = sort => ({type: SET_SORT, data: sort});
 
 export const submitSearch = (value, page = 1) => async (dispatch, getState) => {
   dispatch({type: SEARCH_SUBMITTED, data: value});

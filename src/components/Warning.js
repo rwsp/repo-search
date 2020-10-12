@@ -15,7 +15,7 @@ const Message = styled.span`
 `;
 
 const Warning = props =>
-  <Root layout initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
+  <Root layout initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: .25}}>
     <Message>
       {props.message}
     </Message>
