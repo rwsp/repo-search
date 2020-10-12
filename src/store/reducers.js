@@ -10,14 +10,14 @@ import {toNumberOfPages} from "./module";
  *
  */
 
-const SEARCH_SUBMITTED = 'SEARCH_SUBMITTED';
-const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
-const SEARCH_FAILURE = 'SEARCH_FAILURE';
-const SET_FILTER = 'SET_FILTER';
-const SET_SORT = 'SET_SORT';
-const TOGGLE_CONTROLS = 'TOGGLE_CONTROLS';
+export const SEARCH_SUBMITTED = 'SEARCH_SUBMITTED';
+export const SEARCH_SUCCESS = 'SEARCH_SUCCESS';
+export const SEARCH_FAILURE = 'SEARCH_FAILURE';
+export const SET_FILTER = 'SET_FILTER';
+export const SET_SORT = 'SET_SORT';
+export const TOGGLE_CONTROLS = 'TOGGLE_CONTROLS';
 
-const initialResults = {
+export const initialResults = {
   numberOfExistentItems: null, //number of existent items. this differs from available items bc github has a limit
                               //on the number of items returned by its search repository api
 
@@ -26,7 +26,7 @@ const initialResults = {
   items: [],                  //items in current page
 };
 
-const defaultState = {
+export const defaultState = {
   submitted: false,           //has the app submitted a search
   success: false,             //did the api successfully return a result
   error: false,               //did the api encounter an error during a search
@@ -64,7 +64,7 @@ export const submitSearch = (value, page = 1) => async (dispatch, getState) => {
   });
 };
 
-export const defaultReducer = (state = defaultState, action) => {
+export const defaultReducer = (state = defaultState, action = {type: null}) => {
   switch(action.type) {
     case SEARCH_SUBMITTED:
       return {
